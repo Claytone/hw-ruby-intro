@@ -101,6 +101,6 @@ class BookInStock
     end
 
     def price_as_string
-        return '$'
+        return sprintf('$%.2f', @price)
     end
 end
