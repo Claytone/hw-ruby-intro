@@ -83,10 +83,24 @@ end
 # Part 3
 
 class BookInStock
+    attr_accessor :isbn
+    attr_accessor :price
+
     def initialize(_isbn, _price)
-        @isbn = _isbn
-        @price = _price
+        if (_isbn =~ /^(\d+)$/)
+            @isbn = _isbn
+        else
+            raise ArgumentError
+        end
+
+        if (_price > 0)
+            @price = _price
+        else
+            raise ArgumentError
+        end
     end
 
-    attr_reader :isbn, :price
+    def price_as_string
+        return '$'
+    end
 end

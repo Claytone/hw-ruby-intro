@@ -1,14 +1,28 @@
-def binary_multiple_of_4? s
-    if ( s =~ /([01]+)/ )
-        num = (s.unpack("B*"))[0].to_i
-        if (num%4 == 0)
-            return true
+class BookInStock
+
+    attr_accessor :isbn
+    attr_accessor :price
+
+    def initialize(_isbn, _price)
+        if (_isbn =~ /^(\d+)$/)
+            @isbn = _isbn
         else
-            return false
+            raise ArgumentError
         end
-    else
-        return false
+
+        if (_price > 0)
+            @price = _price
+        else
+            raise ArgumentError
+        end
+    end
+
+    def price_as_string
+        return sprintf('$%.2f', @price)
     end
 end
 
-puts binary_multiple_of_4?('1011')
+book = BookInStock.new("01", 1.1)
+puts book.price_as_string
+puts book.isbn
+puts book.price
